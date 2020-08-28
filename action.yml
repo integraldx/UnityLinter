@@ -1,4 +1,4 @@
-name: 'Hello World'
+name: 'Unity Linter'
 description: 'Greet someone and record the time'
 inputs:
     who-to-greet:
