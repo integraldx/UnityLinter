@@ -14,9 +14,9 @@ inputs:
 runs:
     using: 'composite'
     steps:
-      - run: sed -i 's/UNITY_VERSION/${{ inputs.version }}/gp' 'Dockerfile'
+      - run: sed -i 's/UNITY_VERSION/${{ inputs.version }}/g' 'Dockerfile'
         shell: bash
-      - run: sed -i 's/UNITY_PLATFORM/${{ inputs.platform }}/gp' 'Dockerfile'
+      - run: sed -i 's/UNITY_PLATFORM/${{ inputs.platform }}/g' 'Dockerfile'
         shell: bash
       - run: docker build - --tag unitylinter:1.0 < Dockerfile
         shell: bash
