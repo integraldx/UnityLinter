@@ -16,5 +16,5 @@ runs:
     steps:
       - run: docker build ${{ github.action_path }} --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
         shell: bash
-      - run: docker run --rf unitylinter:1.0
+      - run: docker run -rf unitylinter:1.0
         shell: bash
