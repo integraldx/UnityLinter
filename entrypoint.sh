@@ -10,7 +10,9 @@ wait_file() {
 }
 
 if [ -d /project ]; then
+    echo "Running unity..."
     /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /project -runTests -testResults /project/testResults.xml -logFile /project/Editor.log
+    echo "Waiting for test result..."
     wait_file /project/testResults.xml 60
 else
     echo "Error: /project not found."
