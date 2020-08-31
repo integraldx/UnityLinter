@@ -1,4 +1,6 @@
-FROM gableroux/unity3d:UNITY_VERSION-UNITY_PLATFORM
+ARG unity_version
+ARG unity_platform
+FROM gableroux/unity3d:$unity_version-$unity_platform
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
