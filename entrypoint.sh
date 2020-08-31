@@ -9,13 +9,13 @@ wait_file() {
     ((++wait_seconds))
 }
 
-if [ -d /project ]; then
+if [ -d /workspace ]; then
     echo "Running unity..."
-    /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /project -runTests -testResults /project/testResults.xml -logFile /project/Editor.log
+    /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /workspace -runTests -testResults /workspace/testResults.xml -logFile /workspace/Editor.log
     echo "Waiting for test result..."
-    wait_file /project/testResults.xml 60
+    wait_file /workspace/testResults.xml 60
 else
-    echo "Error: /project not found."
+    echo "Error: /workspace not found."
     exit 1
 fi
 
