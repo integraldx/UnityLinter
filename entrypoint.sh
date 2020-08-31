@@ -9,9 +9,13 @@ wait_file() {
     ((++wait_seconds))
 }
 
-/opt/Unity/Editor/Unity -batchmode -nographics -projectPath /project -runTests -testResults /project/testResults.xml -logFile /project/Editor.log
-
-wait_file /project/testResults.xml 60
+if [ -d /project ]; then
+    /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /project -runTests -testResults /project/testResults.xml -logFile /project/Editor.log
+    wait_file /project/testResults.xml 60
+else
+    echo "Error: /project not found."
+    exit 1
+fi
 
 echo "::set-output name=testResultFile::testResults.xml" 
 echo "::set-output name=editorLogFile::Editor.log" 
