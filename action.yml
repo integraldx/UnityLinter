@@ -18,7 +18,7 @@ runs:
         shell: bash
       - run: sed 's/UNITY_PLATFORM/${{ inputs.platform }}/g' 'Dockerfile' > 'Dockerfile'
         shell: bash
-      - run: docker build 'Dockerfile' --tag unitylinter:1.0
+      - run: docker build . --tag unitylinter:1.0
         shell: bash
       - run: docker run --rf unitylinter:1.0
         shell: bash
