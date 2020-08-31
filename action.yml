@@ -1,6 +1,12 @@
 name: 'Unity Linter'
 description: 'Greet someone and record the time'
 inputs:
+    version:
+        description: 'Unity version to use'
+        required: true
+    platform:
+        description: 'Unity platform to use'
+        required: true
     who-to-greet:
         description: 'Who to greet'
         required: true
