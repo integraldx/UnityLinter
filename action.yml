@@ -14,7 +14,7 @@ inputs:
 runs:
     using: 'composite'
     steps:
-      - run: docker build . --build-arg unity_version=${{ input.version }} --build-arg unity_platform=${{ input.platform }} --tag unitylinter:1.0
+      - run: docker build . --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
         shell: bash
       - run: docker run --rf unitylinter:1.0
         shell: bash
