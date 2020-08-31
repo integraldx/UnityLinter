@@ -11,11 +11,14 @@ inputs:
         description: 'Who to greet'
         required: true
         default: 'World'
-outputs:
-    time:
-        description: 'The time we greeted you'
 runs:
-    using: 'docker'
-    image: 'Dockerfile'
-    args:
-        - ${{ inputs.who-to-greet }}
+    using: 'composite'
+    steps:
+      - run: sed 's/UNITY_VERSION/${{ inputs.version }}' 'Dockerfile' > 'Dockerfile'
+        shell: bash
+      - run: sed 's/UNITY_PLATFORM/${{ inputs.platform }}' 'Dockerfile' > 'Dockerfile'
+        shell: bash
+      - run: docker build 'Dockerfile' --tag unitylinter:1.0
+        shell: bash
+      - run: docker run --rf unitylinter:1.0
+        shell: bash
