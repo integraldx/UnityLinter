@@ -1,20 +1,26 @@
 name: 'Unity Linter'
 description: 'Greet someone and record the time'
 inputs:
-    version:
-        description: 'Unity version to use'
-        required: true
-    platform:
-        description: 'Unity platform to use'
-        required: true
-    who-to-greet:
-        description: 'Who to greet'
-        required: true
-        default: 'World'
+  version:
+    description: 'Unity version to use'
+    required: true
+  platform:
+    description: 'Unity platform to use'
+    required: true
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  testResult:
+    description: "Test result of unity"
+    value: ${{ steps.unity-run.outputs.testResultFile }}
+
 runs:
-    using: 'composite'
-    steps:
-      - run: docker build ${{ github.action_path }} --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
-        shell: bash
-      - run: docker run --rm unitylinter:1.0
-        shell: bash
+  using: 'composite'
+  steps:
+    - run: docker build ${{ github.action_path }} --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
+      shell: bash
+    - id: unity-run
+      run: docker run --rm unitylinter:1.0 --mount type=bind,source=$(GITHUB_WORKSPACE),target=/project
+      shell: bash
