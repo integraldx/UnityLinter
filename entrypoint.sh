@@ -15,6 +15,7 @@ then
     /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /workspace -runTests -testResults /workspace/testResults.xml -logFile /workspace/Editor.log
     echo "Waiting for test result..."
     wait_file /workspace/testResults.xml 60
+    cat /workspace/testResults.xml
 else
     echo "Error: /workspace not found."
     exit 1
