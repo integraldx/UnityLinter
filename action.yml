@@ -22,6 +22,12 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - run: echo ${{ inputs.version }}
+      shell: bash
+    - run: echo ${{ inputs.platform }}
+      shell: bash
+    - run: echo ${{ inputs.projectPath }}
+      shell: bash
     - run: docker build ${{ github.action_path }} --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
       shell: bash
     - id: unity-run
