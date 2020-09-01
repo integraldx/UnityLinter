@@ -25,5 +25,5 @@ runs:
     - run: docker build ${{ github.action_path }} --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
       shell: bash
     - id: unity-run
-      run: docker run -t --rm unitylinter:1.0 -v ${{ inputs.projectPath }}:/workspace
+      run: docker run -t --rm unitylinter:1.0 -v "${{ inputs.projectPath }}":"/workspace"
       shell: bash
