@@ -12,7 +12,7 @@ wait_file() {
 if [ -d "/workspace" ]
 then
     echo "Running unity..."
-    /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /workspace -runTests -testResults /workspace/testResults.xml -logFile /workspace/Editor.log
+    /opt/Unity/Editor/Unity -username ${UNITY_USERNAME} -password ${UNITY_PASSWORD} -batchmode -nographics -projectPath /workspace -runTests -testResults /workspace/testResults.xml -logFile /workspace/Editor.log
     echo "Waiting for test result..."
     wait_file /workspace/testResults.xml 60
     cat /workspace/testResults.xml
