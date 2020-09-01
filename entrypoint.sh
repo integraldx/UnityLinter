@@ -16,6 +16,8 @@ then
     echo "Waiting for test result..."
     wait_file /workspace/testResults.xml 60
     cat /workspace/testResults.xml
+    cat /workspace/Editor.log
+    cat /workspace/ProjectSettings/ProjectSettings.asset
 else
     echo "Error: /workspace not found."
     exit 1
