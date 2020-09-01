@@ -9,7 +9,8 @@ wait_file() {
     ((++wait_seconds))
 }
 
-if [ -d /workspace ]; then
+if [ -d "/workspace" ]
+then
     echo "Running unity..."
     /opt/Unity/Editor/Unity -batchmode -nographics -projectPath /workspace -runTests -testResults /workspace/testResults.xml -logFile /workspace/Editor.log
     echo "Waiting for test result..."
