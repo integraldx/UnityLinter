@@ -10,13 +10,15 @@ inputs:
   serial:
     description: 'Unity activation serial code'
     required: true
+  username:
+    description: 'Unity ID username'
+    required: true
+  password:
+    description: 'Unity ID password'
+    required: true
   projectPath:
     description: 'Path to unity project'
     required: true
-  who-to-greet:
-    description: 'Who to greet'
-    required: true
-    default: 'World'
 outputs:
   testResult:
     description: "Test result of unity"
@@ -34,5 +36,5 @@ runs:
     - run: docker build ${{ github.action_path }} --build-arg unity_version=${{ inputs.version }} --build-arg unity_platform=${{ inputs.platform }} --tag unitylinter:1.0
       shell: bash
     - id: unity-run
-      run: docker run -t --rm unitylinter:1.0 -v "${{ inputs.projectPath }}":"/workspace" -e UNITY_SERIAL=${{ inputs.serial }}
+      run: docker run -t --rm unitylinter:1.0 -v "${{ inputs.projectPath }}":"/workspace" -e UNITY_SERIAL=${{ inputs.serial }} -e UNITY_USERNAME=${{ inputs.username }} -e UNITY_PASSWORD=${{ inputs.password }}
       shell: bash
