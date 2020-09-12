@@ -12,10 +12,22 @@ wait_file() {
 if [ -d "/workspace" ]
 then
     echo "Running unity..."
-    /opt/Unity/Editor/Unity -serial "${UNITY_SERIAL}" -username "${UNITY_USERNAME}" -password "${UNITY_PASSWORD}" -batchmode -nographics -projectPath /workspace -runTests -testResults /workspace/testResults.xml -logFile /workspace/Editor.log
+    /opt/Unity/Editor/Unity \
+        -batchmode \
+        -nographics \
+        -runTests \
+        -quit \
+        -serial "${UNITY_SERIAL}" \
+        -username "${UNITY_USERNAME}" \
+        -password "${UNITY_PASSWORD}" \
+        -projectPath /workspace \
+        -testResults /workspace/testResults.xml \
+        -logFile /workspace/Editor.log
     echo "Waiting for test result..."
     wait_file /workspace/testResults.xml 60
+    echo "Test Results"
     cat /workspace/testResults.xml
+    echo "Editor logs"
     cat /workspace/Editor.log
     cat /workspace/ProjectSettings/ProjectSettings.asset
 else
