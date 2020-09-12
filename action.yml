@@ -23,6 +23,9 @@ outputs:
   testResult:
     description: "Test result of unity"
     value: ${{ steps.unity-run.outputs.testResultFile }}
+  editorLog:
+    description: "Unity editor log"
+    value: ${{ steps.unity-run.outputs.editorLogFile}}
 
 runs:
   using: 'composite'

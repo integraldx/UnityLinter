@@ -18,8 +18,6 @@ then
     cat /workspace/testResults.xml
     cat /workspace/Editor.log
     cat /workspace/ProjectSettings/ProjectSettings.asset
-    /opt/Unity/Editor/Unity -returnlicense -batchmode -quit
-    sleep 10
 else
     echo "Error: /workspace not found."
     exit 1
